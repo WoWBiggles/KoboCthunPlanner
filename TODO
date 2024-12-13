@@ -1,0 +1,2 @@
+- Change Dot:swap_positions to swap the members, not the numbers or positions.
+- Update set_marks to loop through all Dots and assign marks to any players in the right dot index

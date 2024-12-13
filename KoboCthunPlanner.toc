@@ -1,0 +1,36 @@
+## Interface: 11505
+## Title: KoboCthunPlanner
+## Author: Patrick Helm
+## Version: 0.4
+## Notes: C'Thun Positioning Planner
+## SavedVariables: KCP_POSITIONS
+
+embeds.xml
+
+# Wrapper
+kcp.lua
+
+# Lib
+kcp/lib/check_addon.lua
+kcp/lib/events.lua
+kcp/lib/grid.lua
+kcp/lib/group.lua
+kcp/lib/member.lua
+kcp/lib/slash_commands.lua
+kcp/version.lua
+
+# UI Elements
+kcp/ui.lua
+kcp/ui/cthun_frame.lua
+kcp/ui/cursor.lua
+kcp/ui/dot.lua
+kcp/ui/header.lua
+kcp/ui/hide_button.lua
+kcp/ui/share_button.lua
+kcp/ui/opacity_slider.lua
+kcp/ui/resize_area.lua
+kcp/ui/minimap_button.lua
+
+
+# Init
+KoboCthunPlanner.lua
