@@ -5,65 +5,65 @@ KCP.UI.Dot.__index = KCP.UI.Dot
 KCP.UI.Dot.all = {}
 
 local default_positions = {
-  [1] = {1, 98},       --melee         --
-  [2] = {-32, 131},    --healer        -|
-  [3] = {-20, 170},    --ranged        -|Group 1
-  [4] = {22, 171},     --ranged        -|
-  [5] = {34, 132},     --healer/ranged --
-  [6] = {67, 71},      -- melee        --
-  [7] = {69, 118},     --healer        -|
-  [8] = {105, 137},    --ranged        -|Group 2
-  [9] = {134, 107},    --ranged        -|
-  [10] = {115, 70},    --healer/ranged --
-  [11] = {-66, 69},    -- melee        --
-  [12] = {-113, 69},   --healer        -|
-  [13] = {-132, 106},  --ranged        -|Group 3
-  [14] = {-66, 116},   --ranged        -|
-  [15] = {-103, 135},  --healer/ranged --
-  [16] = {97, 4},      -- melee        --
-  [17] = {130, 37},    --healer        -|
-  [18] = {169, 24},    --ranged        -|Group 4
-  [19] = {170, -17},   --ranged        -|
-  [20] = {130, -30},   --healer/ranged --
-  [21] = {-93, 2},     -- melee        --
-  [22] = {-126, -31},  --healer        -|
-  [23] = {-166, -19},  --ranged        -|Group 5
-  [24] = {-166, 22},   --ranged        -|
-  [25] = {-127, 35},   --healer/ranged --
-  [26] = {69, -64},    -- melee        --
-  [27] = {117, -64},   --healer        -|
-  [28] = {135, -100},  --ranged        -|Group 6
-  [29] = {107, -129},  --ranged        -|
-  [30] = {70, -110},   --healer/ranged --
-  [31] = {-65, -65},   -- melee        --
-  [32] = {-65, -112},  --healer        -|
-  [33] = {-101, -131}, --ranged        -|Group 7
-  [34] = {-130, -102}, --ranged        -|
-  [35] = {-112, -66},  --healer/ranged --
-  [36] = {3, -92},     -- melee        --
-  [37] = {36, -126},   --healer        -|
-  [38] = {24, -165},   --ranged        -|Group 8
-  [39] = {-18, -165},  --ranged        -|
-  [40] = {-30, -126}   --healer/ranged --
+  [1] = {1, 1, 98},       --melee         --
+  [2] = {2, -32, 131},    --healer        -|
+  [3] = {3, -20, 170},    --ranged        -|Group 1
+  [4] = {4, 22, 171},     --ranged        -|
+  [5] = {5, 34, 132},     --healer/ranged --
+  [6] = {6, 67, 71},      -- melee        --
+  [7] = {7, 69, 118},     --healer        -|
+  [8] = {8, 105, 137},    --ranged        -|Group 2
+  [9] = {9, 134, 107},    --ranged        -|
+  [10] = {10, 115, 70},    --healer/ranged --
+  [11] = {11, -66, 69},    -- melee        --
+  [12] = {12, -113, 69},   --healer        -|
+  [13] = {13, -132, 106},  --ranged        -|Group 3
+  [14] = {14, -66, 116},   --ranged        -|
+  [15] = {15, -103, 135},  --healer/ranged --
+  [16] = {16, 97, 4},      -- melee        --
+  [17] = {17, 130, 37},    --healer        -|
+  [18] = {18, 169, 24},    --ranged        -|Group 4
+  [19] = {19, 170, -17},   --ranged        -|
+  [20] = {20, 130, -30},   --healer/ranged --
+  [21] = {21, -93, 2},     -- melee        --
+  [22] = {22, -126, -31},  --healer        -|
+  [23] = {23, -166, -19},  --ranged        -|Group 5
+  [24] = {24, -166, 22},   --ranged        -|
+  [25] = {25, -127, 35},   --healer/ranged --
+  [26] = {26, 69, -64},    -- melee        --
+  [27] = {27, 117, -64},   --healer        -|
+  [28] = {28, 135, -100},  --ranged        -|Group 6
+  [29] = {29, 107, -129},  --ranged        -|
+  [30] = {30, 70, -110},   --healer/ranged --
+  [31] = {31, -65, -65},   -- melee        --
+  [32] = {32, -65, -112},  --healer        -|
+  [33] = {33, -101, -131}, --ranged        -|Group 7
+  [34] = {34, -130, -102}, --ranged        -|
+  [35] = {35, -112, -66},  --healer/ranged --
+  [36] = {36, 3, -92},     -- melee        --
+  [37] = {37, 36, -126},   --healer        -|
+  [38] = {38, 24, -165},   --ranged        -|Group 8
+  [39] = {39, -18, -165},  --ranged        -|
+  [40] = {40, -30, -126}   --healer/ranged --
 }
 
 local current_layout = "default"
 
 function KCP.UI.Dot.init()
-  KCP_POSITIONS = KCP_POSITIONS or { default = KCP.copy_table(default_positions) }
+  KCP_DOTS = KCP_DOTS or { default = KCP.copy_table(default_positions) }
 end
 
 function KCP.UI.Dot.reset_positions()
-  KCP_POSITIONS = { default = KCP.copy_table(default_positions) }
+  KCP_DOTS = { default = KCP.copy_table(default_positions) }
   KCP.UI.Dot.share_positions()
 end
 
 function KCP.UI.Dot.share_positions()
-  KCP.submit_event({ type = "SHARE_POSITIONS", payload = KCP_POSITIONS[current_layout] })
+  KCP.submit_event({ type = "SHARE_POSITIONS", payload = KCP_DOTS[current_layout] })
 end
 
 function KCP.UI.Dot.set_positions(new_positions)
-  KCP_POSITIONS[current_layout] = new_positions
+  KCP_DOTS[current_layout] = new_positions
 
   for _, dot in pairs(KCP.UI.Dot.all) do
     dot:reload_position()
@@ -76,6 +76,7 @@ function KCP.UI.Dot.create_or_update(number, member)
   if dot == nil then
     dot = KCP.UI.Dot.create(number, member)
     KCP.UI.Dot.all[number] = dot
+    dot.location = number
   else
     dot:update(number, member)
   end
@@ -130,9 +131,10 @@ function KCP.UI.Dot:create_frame(parent)
 end
 
 function KCP.UI.Dot:reload_position()
-  local positions = KCP_POSITIONS[current_layout]
+  local positions = KCP_DOTS[current_layout]
 
-  self:set_position(positions[self.number][1], positions[self.number][2])
+  self.location = positions[self.number][1];
+  self:set_position(positions[self.number][2], positions[self.number][3])
 end
 
 function KCP.UI.Dot:make_interactive()
@@ -180,8 +182,12 @@ function KCP.UI.Dot:set_position(x, y)
   self.button:ClearAllPoints()
   self.button:SetPoint("CENTER", KCP.frame.frame, "CENTER", x, y)
 
-  KCP_POSITIONS[current_layout][self.number][1] = x
-  KCP_POSITIONS[current_layout][self.number][2] = y
+  KCP_DOTS[current_layout][self.number][2] = x
+  KCP_DOTS[current_layout][self.number][3] = y
+end
+
+function KCP.UI.Dot:set_location(n)
+  KCP_DOTS[current_layout][self.number][1] = n
 end
 
 function KCP.UI.Dot:refresh()
@@ -261,6 +267,10 @@ function KCP.UI.Dot:swap_position_with(other_dot)
 
   self:set_position(other_x, other_y)
   other_dot:set_position(x, y)
+
+  local location = self.location
+  self:set_location(other_dot.location)
+  other_dot:set_location(location)
 end
 
 -- @note DotSwap

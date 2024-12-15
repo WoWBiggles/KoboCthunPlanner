@@ -16,11 +16,23 @@ end
 function KCP.LIB.Grid:set_marks()
   if(self.populated == false) then self:refresh() end
 
-  for group_index, group in pairs(self.groups) do
-    local member = group.members[1]
+  -- Copy dots into a temp table, then sort by descending location.
+  local dots_sorted_by_location = {}
+  for i, dot in pairs(KCP.UI.Dot.all) do
+    dots_sorted_by_location[i] = {}
+    dots_sorted_by_location[i].location = dot.location
+    dots_sorted_by_location[i].name = dot.name
+    dots_sorted_by_location[i].member = dot.member
+  end
+  table.sort(dots_sorted_by_location, function(a, b) return a.location > b.location end)
 
-    if (member ~= nil) then
-      SetRaidTarget(member.name, group_index)
+  -- Loop through all dots, and assign raid marks based on location on the map.
+  -- Because we sorted in descending order, this should result in the player
+  -- closest to the melee position getting the mark in each segment.
+  for i, dot in pairs(dots_sorted_by_location) do
+    if (dot.member) then
+      local marker_number = math.floor((dot.location - 1) / 5) + 1
+      SetRaidTarget(dot.name, marker_number)
     end
   end
 end

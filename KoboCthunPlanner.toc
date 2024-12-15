@@ -3,7 +3,7 @@
 ## Author: Patrick Helm
 ## Version: 0.4
 ## Notes: C'Thun Positioning Planner
-## SavedVariables: KCP_POSITIONS
+## SavedVariables: KCP_DOTS
 
 embeds.xml
 
