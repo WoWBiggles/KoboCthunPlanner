@@ -1,7 +1,7 @@
 ## Interface: 11505
 ## Title: KoboCthunPlanner
 ## Author: Patrick Helm
-## Version: 0.4
+## Version: 0.5
 ## Notes: C'Thun Positioning Planner
 ## SavedVariables: KCP_DOTS
 
